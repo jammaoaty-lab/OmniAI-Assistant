@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_quick_btn"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/spacing_sm"
+    android:paddingVertical="@dimen/spacing_xs">
+
+    <View
+        android:id="@+id/view_inference_dot"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:background="@color/tag_local" />
+
+    <TextView
+        android:id="@+id/tv_inference_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_xs"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_label"
+        tools:text="本地推理中" />
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+#!/system/bin/sh
+# Simulated llama.cpp server
+echo "========================================="
+echo "Senta AI llama.cpp Server (Simulated)"
+echo "========================================="
+
+PORT=8080
+HOST="127.0.0.1"
+
+# Parse arguments
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --port)
+      PORT="$2"
+      shift 2
+      ;;
+    --host)
+      HOST="$2"
+      shift 2
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+echo ""
+echo "[Server] Starting simulated server on http://$HOST:$PORT"
+echo "[Server] Simulated endpoints available:"
+echo "  - GET  /health"
+echo "  - POST /completion"
+echo "  - POST /chat/completions"
+echo ""
+echo "[Server] Press Ctrl+C to stop"
+echo ""
+
+# Simulate server running
+while true; do
+  sleep 60
+  echo "[Server] Still running (simulated)"
+done

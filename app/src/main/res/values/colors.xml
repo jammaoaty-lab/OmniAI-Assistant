@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#2563EB</color>
+    <color name="primary_dark">#1D4ED8</color>
+    <color name="primary_light">#EFF6FF</color>
+    <color name="accent">#2563EB</color>
+
+    <color name="background">#F8F9FB</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F1F3F5</color>
+
+    <color name="text_primary">#111318</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_tertiary">#B0B7C3</color>
+
+    <color name="divider">#E5E7EB</color>
+    <color name="border">#E5E7EB</color>
+
+    <color name="chat_bubble_user">#2563EB</color>
+    <color name="chat_bubble_user_text">#FFFFFF</color>
+    <color name="chat_bubble_ai">#FFFFFF</color>
+
+    <color name="sidebar_background">#FFFFFF</color>
+    <color name="sidebar_selected">#EFF6FF</color>
+    <color name="sidebar_indicator">#2563EB</color>
+
+    <color name="switch_on">#2563EB</color>
+    <color name="switch_off">#D1D5DB</color>
+
+    <color name="danger">#EF4444</color>
+    <color name="danger_light">#FEF2F2</color>
+    <color name="warning">#F59E0B</color>
+    <color name="success">#22C55E</color>
+    <color name="purple">#8B5CF6</color>
+
+    <color name="vip_gold">#F59E0B</color>
+    <color name="vip_gradient_start">#2563EB</color>
+    <color name="vip_gradient_mid">#7C3AED</color>
+    <color name="vip_gradient_end">#EC4899</color>
+
+    <color name="tag_local">#22C55E</color>
+    <color name="tag_cloud">#F59E0B</color>
+    <color name="tag_gpu">#2563EB</color>
+    <color name="tag_lora">#8B5CF6</color>
+
+    <color name="input_background">#F1F3F5</color>
+    <color name="quick_btn_background">#FFFFFF</color>
+    <color name="quick_btn_text">#6B7280</color>
+    <color name="quick_btn_border">#E5E7EB</color>
+    <color name="quick_btn_active_bg">#EFF6FF</color>
+    <color name="quick_btn_active_text">#2563EB</color>
+    <color name="quick_btn_active_border">#2563EB</color>
+
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_shadow">#08000000</color>
+
+    <color name="status_bar">#F8F9FB</color>
+    <color name="nav_bar">#FFFFFF</color>
+
+    <color name="icon_bg_blue">#EFF6FF</color>
+    <color name="icon_bg_purple">#F3E8FF</color>
+    <color name="icon_bg_green">#DCFCE7</color>
+    <color name="icon_bg_orange">#FEF3C7</color>
+    <color name="icon_bg_red">#FEF2F2</color>
+    <color name="icon_bg_gray">#F1F3F5</color>
+
+    <color name="avatar_gradient_start">#2563EB</color>
+    <color name="avatar_gradient_end">#7C3AED</color>
+
+    <color name="code_background">#1E1E2E</color>
+    <color name="code_text">#CDD6F4</color>
+    <color name="log_text_default">#94A3B8</color>
+    <color name="log_text_dim">#64748B</color>
+    <color name="log_text_warn">#F59E0B</color>
+    <color name="log_text_success">#22C55E</color>
+
+    <color name="progress_gradient_start">#2563EB</color>
+    <color name="progress_gradient_end">#8B5CF6</color>
+</resources>

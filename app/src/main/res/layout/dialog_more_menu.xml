@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/surface"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/spacing_lg">
+
+    <View
+        android:layout_width="@dimen/spacing_xxl"
+        android:layout_height="@dimen/spacing_xs"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:background="@color/divider" />
+
+    <LinearLayout
+        android:id="@+id/menu_export_chat"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_xl">
+
+        <ImageView
+            android:layout_width="@dimen/icon_lg"
+            android:layout_height="@dimen/icon_lg"
+            android:contentDescription="@string/tab_chat"
+            android:src="@android:drawable/ic_menu_save"
+            android:tint="@color/text_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:text="导出聊天"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_clear_chat"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_xl">
+
+        <ImageView
+            android:layout_width="@dimen/icon_lg"
+            android:layout_height="@dimen/icon_lg"
+            android:contentDescription="@string/tab_chat"
+            android:src="@android:drawable/ic_menu_delete"
+            android:tint="@color/danger" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:text="清除聊天"
+            android:textColor="@color/danger"
+            android:textSize="@dimen/text_size_body" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_xl">
+
+        <ImageView
+            android:layout_width="@dimen/icon_lg"
+            android:layout_height="@dimen/icon_lg"
+            android:contentDescription="@string/tab_chat"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="@color/text_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:text="搜索"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_settings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_xl">
+
+        <ImageView
+            android:layout_width="@dimen/icon_lg"
+            android:layout_height="@dimen/icon_lg"
+            android:contentDescription="@string/tab_chat"
+            android:src="@android:drawable/ic_menu_preferences"
+            android:tint="@color/text_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:text="设置"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Senta AI</string>
+    <string name="welcome_title">欢迎使用 Senta AI</string>
+    <string name="register_title">创建你的AI空间</string>
+    <string name="hint_phone_or_email">请输入手机号或邮箱</string>
+    <string name="hint_password">请输入登录密码</string>
+    <string name="hint_verify_code">请输入验证码</string>
+    <string name="hint_input_message">输入内容、图片或语音…</string>
+    <string name="btn_login">登录</string>
+    <string name="btn_register">注册</string>
+    <string name="btn_send_code">获取验证码</string>
+    <string name="status_logging_in">登录中…</string>
+    <string name="status_register_success">注册成功</string>
+    <string name="status_token_expired">Token已失效</string>
+    <string name="status_account_error">账号异常请重新登录</string>
+    <string name="status_local_inference">本地推理中</string>
+    <string name="status_gpu_enabled">GPU加速已启用</string>
+    <string name="status_cloud_taken_over">云端推理已接管</string>
+    <string name="status_ai_thinking">AI正在思考…</string>
+    <string name="status_generating">正在生成回答</string>
+    <string name="status_loading_model">正在加载模型</string>
+    <string name="status_init_kv_cache">初始化KV Cache</string>
+    <string name="status_inference_done">推理完成</string>
+    <string name="status_gpu_inference">GPU推理已启用</string>
+    <string name="status_switching_cloud">切换云端AI</string>
+    <string name="status_cloud_takeover">云端推理接管</string>
+    <string name="status_restore_local">恢复本地推理模式</string>
+    <string name="status_context_synced">上下文已同步</string>
+    <string name="error_model_load_failed">模型加载失败</string>
+    <string name="error_context_cache">上下文缓存异常</string>
+    <string name="error_memory_low">设备内存不足</string>
+    <string name="error_inference_interrupt">推理任务中断</string>
+    <string name="error_model_corrupted">模型损坏</string>
+    <string name="error_version_incompatible">版本不兼容</string>
+    <string name="error_compute_insufficient">设备算力不足</string>
+    <string name="error_thread_exception">推理线程异常</string>
+    <string name="tab_chat">聊天</string>
+    <string name="tab_agent">Agent</string>
+    <string name="tab_knowledge">知识库</string>
+    <string name="tab_model">模型</string>
+    <string name="tab_profile">我的</string>
+    <string name="quick_ai_writing">AI写作</string>
+    <string name="quick_code_gen">代码生成</string>
+    <string name="quick_translate">翻译</string>
+    <string name="quick_ocr">OCR识图</string>
+    <string name="quick_voice">语音助手</string>
+    <string name="quick_search">AI搜索</string>
+    <string name="quick_knowledge">知识库</string>
+    <string name="quick_agent">Agent</string>
+    <string name="train_start">开始训练</string>
+    <string name="train_pause">暂停训练</string>
+    <string name="train_resume">继续训练</string>
+    <string name="train_stop">停止训练</string>
+    <string name="train_export">导出LoRA</string>
+    <string name="train_status_processing">数据集处理中</string>
+    <string name="train_status_tokenizer">Tokenizer初始化</string>
+    <string name="train_status_training">LoRA训练中</string>
+    <string name="train_status_saving">权重保存中</string>
+    <string name="train_status_merged">模型融合完成</string>
+    <string name="kb_status_parsing">文档解析中</string>
+    <string name="kb_status_embedding">Embedding生成中</string>
+    <string name="kb_status_built">知识库构建完成</string>
+    <string name="kb_status_index_updated">向量索引更新成功</string>
+    <string name="mm_status_image_rec">图片识别中</string>
+    <string name="mm_status_ocr">OCR处理中</string>
+    <string name="mm_status_voice_rec">语音识别中</string>
+    <string name="mm_status_tts">AI语音生成中</string>
+
+    <string name="credits_center">积分中心</string>
+    <string name="credits_my_credits">我的积分</string>
+    <string name="credits_invite_code">邀请码</string>
+    <string name="credits_invite_friends">邀请好友</string>
+    <string name="credits_copy_code">复制邀请码</string>
+    <string name="credits_share_invite">分享邀请链接</string>
+    <string name="credits_recharge">积分充值</string>
+    <string name="credits_records">积分明细</string>
+    <string name="credits_recharge_success">充值成功，积分已到账</string>
+    <string name="credits_insufficient">积分不足</string>
+    <string name="credits_insufficient_message">您的积分不足，请充值后继续使用该功能</string>
+    <string name="credits_invite_records">邀请记录</string>
+    <string name="credits_no_invite_records">暂无邀请记录</string>
+    <string name="credits_copy_code_success">邀请码已复制</string>
+    <string name="credits_copy_code_failed">复制失败</string>
+    <string name="credits_popular">热门</string>
+    <string name="credits_select">选择</string>
+    <string name="credits_price_format">¥%d</string>
+    <string name="credits_amount_format">%d积分</string>
+    <string name="credits_invite_count_format">已邀请%d人</string>
+    <string name="credits_type_invite">邀请奖励</string>
+    <string name="credits_type_recharge">充值到账</string>
+    <string name="credits_type_consume">功能消耗</string>
+    <string name="credits_type_system">系统奖励</string>
+
+    <string name="vision_recognizing">正在识别图片</string>
+    <string name="vision_ocr_processing">OCR处理中</string>
+    <string name="vision_inference_running">图像推理中</string>
+    <string name="vision_model_loaded">视觉模型加载完成</string>
+    <string name="vision_format_unsupported">图片格式不支持</string>
+    <string name="vision_image_corrupted">图片损坏</string>
+    <string name="vision_model_load_failed">视觉模型加载失败</string>
+    <string name="vision_download_interrupted">视觉模型下载中断</string>
+    <string name="vision_file_verify_failed">文件校验失败</string>
+
+    <string name="error_network_connection">网络连接异常</string>
+    <string name="error_network_timeout">请求超时</string>
+    <string name="error_network_server">服务器错误</string>
+    <string name="error_credits_invite_format">邀请码格式错误</string>
+    <string name="error_credits_invite_expired">邀请码已失效</string>
+    <string name="error_credits_recharge_failed">充值请求失败</string>
+    <string name="error_credits_payment_interrupted">支付流程中断</string>
+
+    <string name="error_vision_title">视觉功能异常</string>
+    <string name="error_vision_default">视觉处理发生错误</string>
+    <string name="error_vision_format_unsupported">图片格式不支持</string>
+    <string name="error_vision_image_corrupted">图片文件损坏</string>
+    <string name="error_vision_image_too_large">图片体积过大</string>
+    <string name="error_vision_model_load_failed">视觉模型加载失败</string>
+    <string name="error_vision_oom">内存不足无法执行图像推理</string>
+    <string name="error_vision_device_overheated">设备温度过高</string>
+    <string name="error_vision_camera_denied">相机权限被拒绝</string>
+    <string name="error_vision_storage_denied">存储权限被拒绝</string>
+    <string name="error_vision_download_interrupted">视觉模型下载中断</string>
+    <string name="error_vision_file_verify_failed">文件校验失败</string>
+
+    <string name="error_credits_title">积分异常</string>
+    <string name="error_credits_default">积分操作发生错误</string>
+    <string name="error_credits_insufficient">积分不足</string>
+    <string name="error_credits_load_failed">积分数据加载失败</string>
+
+    <string name="error_network_title">网络异常</string>
+    <string name="error_permission_title">权限异常</string>
+    <string name="error_permission_default">权限被拒绝，请在设置中开启</string>
+    <string name="error_permission_microphone">麦克风权限被拒绝</string>
+
+    <string name="error_file_default">文件操作发生错误</string>
+    <string name="error_file_not_found">文件不存在</string>
+    <string name="error_file_no_space">存储空间不足</string>
+
+    <string name="error_app_crash">应用发生异常，请重试</string>
+
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="retry">重试</string>
+    <string name="go_settings">去设置</string>
+
+    <string name="vision_chip_local">本地视觉推理</string>
+    <string name="vision_chip_cloud">云端视觉推理</string>
+    <string name="vision_model_not_loaded">视觉模型未加载</string>
+    <string name="vision_model_ready">视觉模型就绪</string>
+    <string name="camera_capture">拍照识图</string>
+    <string name="ocr_extract">OCR提取</string>
+    <string name="image_analyze">图片分析</string>
+
+    <string name="credits_balance_label">我的积分</string>
+    <string name="credits_center_btn">积分中心</string>
+    <string name="credits_invite_code_label">邀请码</string>
+    <string name="credits_copy_success">邀请码已复制</string>
+    <string name="credits_share_title">分享邀请链接</string>
+    <string name="credits_recharge_confirm">确认充值</string>
+    <string name="credits_recharge_cancel">充值已取消</string>
+    <string name="credits_payment_failed">支付失败，请重试</string>
+    <string name="credits_payment_interrupted">支付流程中断</string>
+    <string name="credits_consume_confirm">此操作将消耗%d积分，是否继续？</string>
+    <string name="credits_deduct_failed">积分扣除失败</string>
+
+    <string name="settings_group_vision">视觉</string>
+    <string name="settings_vision_gpu">视觉GPU加速</string>
+    <string name="settings_auto_ocr">图像自动OCR</string>
+    <string name="settings_vision_mode">视觉推理模式</string>
+    <string name="settings_image_cache_clean">图片缓存自动清理</string>
+    <string name="settings_group_credits">积分</string>
+    <string name="settings_credits_balance">积分余额</string>
+    <string name="settings_credits_warning">积分消耗提醒</string>
+    <string name="settings_cloud_gpu">云端GPU加速</string>
+    <string name="settings_long_context">超长上下文</string>
+    <string name="settings_reset_defaults">恢复默认设置</string>
+    <string name="settings_reset_confirm">确定恢复所有设置为默认值？</string>
+    <string name="settings_about_us">关于我们</string>
+
+    <string name="tab_vision_models">视觉模型</string>
+    <string name="vision_model_switch">切换视觉模型</string>
+    <string name="vision_model_restore_default">恢复默认视觉模型</string>
+    <string name="vision_model_hardware_check">正在检查硬件兼容性</string>
+    <string name="vision_model_hardware_incompatible">设备硬件不兼容此模型</string>
+
+    <string name="train_target_text">文本模型</string>
+    <string name="train_target_vision">视觉模型</string>
+    <string name="train_vision_model_label">视觉模型</string>
+    <string name="train_credits_insufficient">积分不足，无法开始训练</string>
+    <string name="train_overheated">设备温度过高，训练已自动暂停</string>
+    <string name="train_memory_low">可用内存不足，训练已自动暂停</string>
+
+    <string name="error_image_format">图片格式不支持</string>
+    <string name="error_image_corrupted">图片文件损坏</string>
+    <string name="error_image_too_large">图片体积过大（最大20MB）</string>
+    <string name="error_camera_permission">需要相机权限才能拍照</string>
+    <string name="error_storage_permission">需要存储权限才能访问图片</string>
+
+    <string name="profile_credits_card">积分卡片</string>
+    <string name="profile_vision_model">视觉模型</string>
+    <string name="profile_menu_credits">积分中心</string>
+    <string name="profile_menu_multimodal">多模态</string>
+
+    <string-array name="train_target_options">
+        <item>文本模型</item>
+        <item>视觉模型</item>
+    </string-array>
+
+    <string-array name="vision_model_options">
+        <item>Qwen3-VL-2B</item>
+        <item>Qwen2.5-VL-7B</item>
+        <item>SmolVLM2-256M</item>
+    </string-array>
+
+    <string name="terminal_title">Senta AI Terminal</string>
+    <string name="terminal_prompt">llama&gt; </string>
+    <string name="terminal_input_hint">Enter command...</string>
+    <string name="terminal_menu">终端</string>
+    <string name="terminal_service_start">启动后台服务</string>
+    <string name="terminal_service_stop">停止后台服务</string>
+    <string name="profile_menu_terminal">终端</string>
+
+    <string name="error_invalid_image">请选择有效的图片文件</string>
+    <string name="error_image_read_failed">图片读取失败</string>
+    <string name="error_kb_not_selected">请先选择知识库</string>
+    <string name="error_invalid_number">请输入有效数字</string>
+    <string name="error_token_expired">登录已过期，请重新登录</string>
+    <string name="operation_in_progress">操作进行中，请稍候</string>
+    <string name="default_vision_model_not_found">未找到默认视觉模型</string>
+    <string name="social_login_wechat_unavailable">微信登录SDK尚未集成，请使用其他登录方式</string>
+    <string name="social_login_qq_unavailable">QQ登录SDK尚未集成，请使用其他登录方式</string>
+    <string name="social_login_apple_unavailable">Apple登录SDK尚未集成，请使用其他登录方式</string>
+    <string name="storage_insufficient">存储空间不足</string>
+    <string name="storage_insufficient_message">下载 %1$s 需要约 %2$s 空间，请清理存储后重试。</string>
+    <string name="download_complete">%1$s 下载完成</string>
+    <string name="download_failed">下载失败: %1$s</string>
+    <string name="download_cancelled">下载已取消</string>
+    <string name="import_success">导入成功</string>
+    <string name="import_model">导入模型</string>
+    <string name="import_from_file">从文件导入</string>
+    <string name="import_from_url">从URL导入</string>
+    <string name="advanced_vision_model">高级视觉模型</string>
+    <string name="advanced_vision_model_message">%1$s 为高级视觉模型，下载将消耗 %2$d 积分。是否继续？</string>
+    <string name="switching_vision_model">切换视觉模型</string>
+    <string name="switching_vision_model_message">正在切换到 %1$s…</string>
+    <string name="switched_vision_model">已切换到 %1$s</string>
+    <string name="switch_vision_model_failed">切换失败: %1$s</string>
+    <string name="document_analysis_failed">文档分析失败: %1$s</string>
+    <string name="camera_result_failed">拍照结果获取失败</string>
+    <string name="more_options">更多</string>
+    <string name="option_agent">Agent智能体</string>
+    <string name="option_knowledge">知识库</string>
+    <string name="option_model_management">模型管理</string>
+    <string name="option_lora_training">LoRA训练</string>
+    <string name="option_terminal">终端</string>
+    <string name="option_credits_center">积分中心</string>
+    <string name="option_settings">设置</string>
+    <string name="quick_command_failed">快捷指令执行失败: %1$s</string>
+    <string name="model_delete_confirm">确定删除模型 %1$s？此操作不可恢复。</string>
+    <string name="model_delete_success">模型已删除</string>
+    <string name="model_delete_failed">删除失败: %1$s</string>
+    <string name="ocr_processing">OCR识别中…</string>
+    <string name="document_imported">文档导入成功</string>
+    <string name="delete_kb_title">删除知识库</string>
+    <string name="delete_kb_message">确定删除知识库 %1$s？此操作不可恢复。</string>
+    <string name="close">关闭</string>
+    <string name="import_document">导入文档</string>
+    <string name="import_image">导入图片</string>
+    <string name="confirm">确认</string>
+    <string name="local_models">本地模型</string>
+    <string name="download_models">下载模型</string>
+    <string name="vision_models">视觉模型</string>
+    <string name="status_loaded">已加载</string>
+    <string name="status_running">运行中</string>
+    <string name="status_gpu">GPU</string>
+    <string name="status_lora">LoRA</string>
+    <string name="status_idle">空闲</string>
+    <string name="action_rename">重命名</string>
+    <string name="action_categorize">分类</string>
+    <string name="action_encrypt">加密</string>
+    <string name="encrypt_model_message">加密模型 %1$s 的权重文件？</string>
+    <string name="model_categories">模型分类</string>
+    <string name="train_credits_insufficient_message">积分不足，无法开始训练</string>
+    <string name="train_device_overheated">设备温度过高，训练已自动暂停</string>
+    <string name="train_memory_low_message">可用内存不足，训练已自动暂停</string>
+    <string name="login_google_failed">Google登录失败</string>
+    <string name="login_wechat_failed">微信登录失败</string>
+    <string name="login_qq_failed">QQ登录失败</string>
+    <string name="login_apple_failed">Apple登录失败</string>
+    <string name="forgot_password_title">重置密码</string>
+    <string name="forgot_password_message">请输入注册手机号，我们将发送验证码</string>
+    <string name="password_reset_success">密码重置成功</string>
+    <string name="password_reset_failed">密码重置失败</string>
+    <string name="code_sent">验证码已发送</string>
+    <string name="code_send_failed">验证码发送失败</string>
+    <string name="input_account_hint">请输入手机号或邮箱</string>
+    <string name="input_password_hint">请输入密码</string>
+    <string name="input_phone_hint">请输入手机号</string>
+    <string name="input_code_hint">请输入验证码</string>
+    <string name="toggle_to_code_login">验证码登录</string>
+    <string name="toggle_to_password_login">密码登录</string>
+    <string name="switch_to_register">没有账号？注册</string>
+    <string name="forgot_password">忘记密码？</string>
+    <string name="third_party_login">第三方登录</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_failed">登录失败</string>
+    <string name="register_success">注册成功</string>
+    <string name="register_failed">注册失败</string>
+    <string name="empty_account">请输入账号</string>
+    <string name="empty_password">请输入密码</string>
+    <string name="empty_phone">请输入手机号</string>
+    <string name="empty_code">请输入验证码</string>
+    <string name="invalid_phone_format">手机号格式不正确</string>
+    <string name="login_required">需要登录</string>
+    <string name="login_required_download">下载模型需要登录账号，是否前往登录？</string>
+    <string name="login_required_deep_think">深度思考模式需要登录账号，是否前往登录？</string>
+    <string name="login">登录</string>
+
+</resources>

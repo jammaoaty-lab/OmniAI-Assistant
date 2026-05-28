@@ -1,0 +1,11 @@
+#!/system/bin/sh
+# Simulated llama-cli
+echo "========================================="
+echo "Senta AI llama-cli (Simulated)"
+echo "========================================="
+echo ""
+echo "Usage: llama-cli -m model.gguf [options]"
+echo ""
+echo "This is a simulated CLI tool for testing purposes."
+echo "Place real llama.cpp binaries in assets/llama-bin directory."
+echo ""

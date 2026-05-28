@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_xl">20dp</dimen>
+    <dimen name="spacing_xxl">24dp</dimen>
+    <dimen name="spacing_xxxl">32dp</dimen>
+
+    <dimen name="radius_sm">10dp</dimen>
+    <dimen name="radius_md">14dp</dimen>
+    <dimen name="radius_lg">18dp</dimen>
+    <dimen name="radius_xl">22dp</dimen>
+    <dimen name="radius_full">999dp</dimen>
+
+    <dimen name="icon_sm">16dp</dimen>
+    <dimen name="icon_md">20dp</dimen>
+    <dimen name="icon_lg">24dp</dimen>
+    <dimen name="icon_xl">32dp</dimen>
+    <dimen name="icon_xxl">48dp</dimen>
+
+    <dimen name="icon_container_sm">28dp</dimen>
+    <dimen name="icon_container_md">32dp</dimen>
+    <dimen name="icon_container_lg">40dp</dimen>
+
+    <dimen name="avatar_sm">32dp</dimen>
+    <dimen name="avatar_md">44dp</dimen>
+    <dimen name="avatar_lg">76dp</dimen>
+    <dimen name="avatar_xl">80dp</dimen>
+
+    <dimen name="input_height">50dp</dimen>
+    <dimen name="btn_height">50dp</dimen>
+    <dimen name="nav_height">52dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="chat_input_min">38dp</dimen>
+    <dimen name="chat_input_max">100dp</dimen>
+
+    <dimen name="card_elevation">0dp</dimen>
+    <dimen name="card_stroke">0.5dp</dimen>
+    <dimen name="card_radius">18dp</dimen>
+
+    <dimen name="bubble_radius">18dp</dimen>
+    <dimen name="bubble_radius_tight">6dp</dimen>
+
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="sidebar_width">280dp</dimen>
+    <dimen name="quick_btn_height">30dp</dimen>
+    <dimen name="tag_height">20dp</dimen>
+
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="text_size_body">14sp</dimen>
+    <dimen name="text_size_subtitle">15sp</dimen>
+    <dimen name="text_size_title">26sp</dimen>
+    <dimen name="text_size_headline">19sp</dimen>
+    <dimen name="text_size_display">28sp</dimen>
+    <dimen name="text_size_label">11sp</dimen>
+    <dimen name="text_size_tag">9sp</dimen>
+
+    <dimen name="send_btn_size">36dp</dimen>
+    <dimen name="action_btn_size">38dp</dimen>
+    <dimen name="fab_size">48dp</dimen>
+    <dimen name="fab_radius">16dp</dimen>
+
+    <dimen name="recharge_card_width">140dp</dimen>
+    <dimen name="credits_record_item_height">56dp</dimen>
+</resources>

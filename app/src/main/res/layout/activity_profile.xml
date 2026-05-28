@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:paddingHorizontal="@dimen/spacing_lg"
+            android:paddingTop="@dimen/spacing_xxl"
+            android:paddingBottom="@dimen/spacing_xl">
+
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/avatar_xl"
+                android:layout_height="@dimen/avatar_xl"
+                android:background="@drawable/bg_avatar_gradient"
+                android:contentDescription="@string/tab_profile"
+                android:src="@drawable/ic_person"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_subtitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+                tools:text="Senta AI用户" />
+
+            <TextView
+                android:id="@+id/tv_uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_size_caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_nickname"
+                tools:text="UID: 100001" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_uid">
+
+                <TextView
+                    android:id="@+id/tv_credits_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/tag_height"
+                    android:background="@drawable/bg_credits_badge"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/spacing_sm"
+                    android:text="积分"
+                    android:textColor="@color/surface"
+                    android:textSize="@dimen/text_size_tag"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_device_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_sm"
+                    android:textColor="@color/text_tertiary"
+                    android:textSize="@dimen/text_size_caption"
+                    tools:text="3台设备" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_credits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_md"
+            app:cardBackgroundColor="@color/surface"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_credits_card"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_lg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/credits_my_credits"
+                    android:textColor="#B3FFFFFF"
+                    android:textSize="@dimen/text_size_caption" />
+
+                <TextView
+                    android:id="@+id/tv_credits_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="-0.5"
+                    android:textColor="@color/surface"
+                    android:textSize="@dimen/text_size_display"
+                    tools:text="12,580" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_invite_code"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#B3FFFFFF"
+                        android:textSize="@dimen/text_size_caption"
+                        tools:text="邀请码: ABC123" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_credits_center"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:backgroundTint="#33FFFFFF"
+                        android:text="@string/credits_center"
+                        android:textColor="@color/surface"
+                        android:textSize="@dimen/text_size_caption"
+                        app:cornerRadius="@dimen/radius_md" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/layout_vision_model_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:background="@drawable/bg_vision_status_row"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingVertical="@dimen/spacing_sm"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <View
+                android:id="@+id/view_vision_model_dot"
+                android:layout_width="@dimen/spacing_sm"
+                android:layout_height="@dimen/spacing_sm"
+                android:background="@drawable/bg_dot_indicator" />
+
+            <TextView
+                android:id="@+id/tv_vision_model_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:layout_weight="1"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_size_caption"
+                tools:text="Senta-Vision-2B · 本地视觉推理" />
+
+            <ImageView
+                android:layout_width="@dimen/icon_sm"
+                android:layout_height="@dimen/icon_sm"
+                android:contentDescription="@string/tab_profile"
+                android:src="@drawable/ic_chevron_right"
+                android:tint="@color/text_tertiary" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:id="@+id/ll_menu_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_credits_center" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_multimodal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_model_center" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_lora_train" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_knowledge_base" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_voice_assistant" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_cache_manager" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_download_manager" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_privacy_security" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_developer_mode" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/divider" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_logout"
+            style="@style/Senta.Button.Danger"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginBottom="@dimen/spacing_xxl"
+            android:text="退出登录" />
+
+    </LinearLayout>
+
+</ScrollView>

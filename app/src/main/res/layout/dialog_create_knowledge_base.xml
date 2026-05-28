@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/spacing_xl"
+    android:paddingTop="@dimen/spacing_xl"
+    android:paddingBottom="@dimen/spacing_xxl">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="新建知识库"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_subtitle" />
+
+    <EditText
+        android:id="@+id/et_kb_name"
+        style="@style/Senta.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:hint="知识库名称"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/et_kb_description"
+        style="@style/Senta.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:hint="知识库描述"
+        android:maxLines="3"
+        android:singleLine="false" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_create"
+        style="@style/Senta.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:text="创建" />
+
+</LinearLayout>

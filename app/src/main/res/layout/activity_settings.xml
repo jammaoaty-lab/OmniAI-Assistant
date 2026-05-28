@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_xxl">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/surface"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:title="设置"
+            app:titleTextAppearance="@style/Senta.TextView.Title" />
+
+        <include layout="@layout/item_setting_group_header"
+            android:id="@+id/header_account" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_change_password" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_bind_phone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_bind_email" />
+
+        </LinearLayout>
+
+        <include layout="@layout/item_setting_group_header"
+            android:id="@+id/header_ai" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_default_model" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_system_prompt" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_temperature" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_top_p" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_top_k" />
+
+        </LinearLayout>
+
+        <include layout="@layout/item_setting_group_header"
+            android:id="@+id/header_inference" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_thread_count" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_context_length" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_mmap" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_gpu_accel" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_inference_mode" />
+
+        </LinearLayout>
+
+        <include layout="@layout/item_setting_group_header"
+            android:id="@+id/header_cache" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_auto_clean" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_cache_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_clean_cache" />
+
+        </LinearLayout>
+
+        <include layout="@layout/item_setting_group_header"
+            android:id="@+id/header_privacy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_app_lock" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_fingerprint" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_incognito" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_data_encrypt" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_sensitive_filter" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_cloud_fallback" />
+
+        </LinearLayout>
+
+        <include layout="@layout/item_setting_group_header"
+            android:id="@+id/header_developer" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_dev_mode" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_debug_log" />
+
+        </LinearLayout>
+
+        <include layout="@layout/item_setting_group_header"
+            android:id="@+id/header_about" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_version" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_check_update" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_user_agreement" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:background="@color/divider" />
+
+            <include layout="@layout/item_setting"
+                android:id="@+id/item_privacy_policy" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

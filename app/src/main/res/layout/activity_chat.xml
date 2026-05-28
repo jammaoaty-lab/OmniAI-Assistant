@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                android:paddingStart="@dimen/spacing_sm"
+                android:paddingEnd="@dimen/spacing_sm"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp">
+
+                <ImageButton
+                    android:id="@+id/btn_sidebar"
+                    android:layout_width="@dimen/icon_xl"
+                    android:layout_height="@dimen/icon_xl"
+                    android:layout_gravity="start|center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/tab_chat"
+                    android:src="@drawable/ic_menu"
+                    android:tint="@color/text_primary" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_model_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_subtitle"
+                        tools:text="Senta-7B" />
+
+                    <LinearLayout
+                        android:id="@+id/vision_chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/bg_vision_chip"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/spacing_sm"
+                        android:paddingVertical="2dp"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <View
+                            android:id="@+id/view_vision_dot"
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:background="@drawable/bg_dot_indicator" />
+
+                        <TextView
+                            android:id="@+id/tv_vision_chip_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/primary"
+                            android:textSize="10sp"
+                            tools:text="本地视觉推理" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btn_new_chat"
+                    android:layout_width="@dimen/icon_xl"
+                    android:layout_height="@dimen/icon_xl"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/spacing_sm"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/tab_chat"
+                    android:src="@drawable/ic_add"
+                    android:tint="@color/text_primary" />
+
+                <ImageButton
+                    android:id="@+id/btn_more"
+                    android:layout_width="@dimen/icon_xl"
+                    android:layout_height="@dimen/icon_xl"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/tab_chat"
+                    android:src="@drawable/ic_more"
+                    android:tint="@color/text_primary" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/border" />
+
+            <include layout="@layout/view_status_bar" />
+
+            <LinearLayout
+                android:id="@+id/layout_vision_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/spacing_lg"
+                android:paddingVertical="@dimen/spacing_xs"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <View
+                    android:id="@+id/view_vision_status_dot"
+                    android:layout_width="@dimen/spacing_sm"
+                    android:layout_height="@dimen/spacing_sm"
+                    android:background="@drawable/bg_dot_indicator" />
+
+                <TextView
+                    android:id="@+id/tv_vision_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_caption"
+                    tools:text="视觉模型: Senta-Vision-2B · 就绪" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_chat_messages"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/spacing_sm"
+                android:paddingBottom="@dimen/spacing_sm"
+                app:layout_constraintBottom_toTopOf="@id/rv_quick_commands"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_chat_message_ai" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_quick_commands"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/spacing_lg"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingEnd="@dimen/spacing_lg"
+                android:paddingBottom="@dimen/spacing_xs"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/input_area"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_quick_command" />
+
+            <LinearLayout
+                android:id="@+id/input_area"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/surface"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_height"
+                    android:background="@color/border" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/spacing_sm"
+                    android:paddingTop="@dimen/spacing_sm"
+                    android:paddingEnd="@dimen/spacing_sm"
+                    android:paddingBottom="@dimen/spacing_sm">
+
+                    <ImageButton
+                        android:id="@+id/btn_attach"
+                        android:layout_width="@dimen/icon_xl"
+                        android:layout_height="@dimen/icon_xl"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/tab_chat"
+                        android:src="@drawable/ic_attach"
+                        android:tint="@color/text_secondary" />
+
+                    <ImageButton
+                        android:id="@+id/btn_camera"
+                        android:layout_width="@dimen/icon_xl"
+                        android:layout_height="@dimen/icon_xl"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/vision_recognizing"
+                        android:src="@drawable/ic_camera"
+                        android:tint="@color/text_secondary" />
+
+                    <EditText
+                        android:id="@+id/et_message"
+                        style="@style/Senta.EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:layout_weight="1"
+                        android:hint="@string/hint_input_message"
+                        android:maxLines="4"
+                        android:minHeight="@dimen/chat_input_min"
+                        android:textColorHint="@color/text_tertiary" />
+
+                    <ImageButton
+                        android:id="@+id/btn_ocr"
+                        android:layout_width="@dimen/icon_xl"
+                        android:layout_height="@dimen/icon_xl"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/quick_ocr"
+                        android:src="@drawable/ic_ocr"
+                        android:tint="@color/text_secondary" />
+
+                    <ImageButton
+                        android:id="@+id/btn_voice"
+                        android:layout_width="@dimen/icon_xl"
+                        android:layout_height="@dimen/icon_xl"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/quick_voice"
+                        android:src="@drawable/ic_mic"
+                        android:tint="@color/text_secondary" />
+
+                    <ImageButton
+                        android:id="@+id/btn_send"
+                        android:layout_width="@dimen/send_btn_size"
+                        android:layout_height="@dimen/send_btn_size"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:background="@drawable/bg_send_btn_selector"
+                        android:contentDescription="@string/tab_chat"
+                        android:elevation="2dp"
+                        android:enabled="false"
+                        android:padding="@dimen/spacing_sm"
+                        android:src="@drawable/ic_send"
+                        android:tint="@color/surface" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include layout="@layout/view_sidebar" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

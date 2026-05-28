@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/spacing_md"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardBackgroundColor="@color/surface"
+    app:strokeColor="@color/border"
+    app:strokeWidth="@dimen/card_stroke"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="@dimen/recharge_card_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_lg"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_popular_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/credits_popular"
+            android:textSize="@dimen/text_size_tag"
+            android:textColor="@color/surface"
+            android:background="@drawable/bg_btn_primary"
+            android:paddingHorizontal="@dimen/spacing_sm"
+            android:paddingVertical="@dimen/spacing_xs"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_plan_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:textSize="@dimen/text_size_subtitle"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/tv_plan_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:textSize="@dimen/text_size_headline"
+            android:textColor="@color/primary"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/tv_plan_credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:textSize="@dimen/text_size_caption"
+            android:textColor="@color/text_secondary" />
+
+        <Button
+            android:id="@+id/btn_select_plan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xxl"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:text="@string/credits_select"
+            android:textSize="@dimen/text_size_label"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:background="@drawable/bg_btn_primary"
+            android:textColor="@color/surface" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

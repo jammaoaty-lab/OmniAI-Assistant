@@ -1,0 +1,8 @@
+# Qwen3-VL-2B-Q4_K_M.gguf
+Placeholder for testing
+This is a placeholder GGUF vision model file
+Size: ~1.5 GB
+Architecture: Qwen3-VL
+Quantization: Q4_K_M
+Vocabulary size: 151936
+Vision: Yes (ViT)

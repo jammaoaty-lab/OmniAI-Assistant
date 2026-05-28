@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#0a0a0a"
+        android:elevation="4dp" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:textColor="#00ff00"
+            android:lineSpacingExtra="2dp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout_download_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#111827"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progress_download"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="0"
+            android:progressTint="#2563EB"
+            android:progressBackgroundTint="#1E293B" />
+
+        <TextView
+            android:id="@+id/tv_download_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:maxWidth="140dp"
+            android:singleLine="true"
+            android:ellipsize="middle" />
+
+        <ImageButton
+            android:id="@+id/btn_download_model"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:background="?selectableItemBackground"
+            android:src="@android:drawable/stat_sys_download"
+            android:contentDescription="Download Model"
+            android:tint="#2563EB"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#0a0a0a"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terminal_prompt"
+            android:textColor="#00ff00"
+            android:textSize="14sp"
+            android:fontFamily="monospace" />
+
+        <EditText
+            android:id="@+id/etInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:inputType="text"
+            android:imeOptions="actionDone|flagNoExtractUi"
+            android:hint="@string/terminal_input_hint"
+            android:hintTextColor="#666666" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="?selectableItemBackground"
+            android:src="@drawable/ic_send"
+            android:contentDescription="@string/send"
+            android:tint="#00ff00" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_status_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/spacing_xs"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/spacing_lg"
+    android:paddingVertical="@dimen/spacing_xs"
+    android:visibility="gone">
+
+    <View
+        android:id="@+id/view_status_dot"
+        android:layout_width="@dimen/spacing_sm"
+        android:layout_height="@dimen/spacing_sm"
+        android:background="@color/tag_local" />
+
+    <TextView
+        android:id="@+id/tv_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_xs"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_caption"
+        tools:text="本地推理中" />
+
+</LinearLayout>

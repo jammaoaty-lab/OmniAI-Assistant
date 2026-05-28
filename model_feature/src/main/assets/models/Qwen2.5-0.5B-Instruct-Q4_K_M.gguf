@@ -1,0 +1,7 @@
+# Qwen2.5-0.5B-Instruct-Q4_K_M.gguf
+Placeholder for testing
+This is a placeholder GGUF model file
+Size: ~380 MB
+Architecture: Qwen2.5
+Quantization: Q4_K_M
+Vocabulary size: 151936

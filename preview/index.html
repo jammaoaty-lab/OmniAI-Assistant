@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniAI - 本地AI助手</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #EFF6FF;
+            --background: #F8F9FB;
+            --surface: #FFFFFF;
+            --surface-variant: #F1F3F5;
+            --text-primary: #111318;
+            --text-secondary: #6B7280;
+            --text-tertiary: #B0B7C3;
+            --border: #E5E7EB;
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --purple: #8B5CF6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .feature-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .preview-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .preview-card {
+            background: var(--surface);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .preview-header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .preview-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .preview-header p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .preview-content {
+            padding: 24px;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            background: #1a1a1a;
+            border-radius: 32px;
+            padding: 12px;
+            box-shadow: inset 0 0 0 2px #333;
+        }
+
+        .phone-screen {
+            background: var(--background);
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 9/19.5;
+            position: relative;
+        }
+
+        /* Chat Interface */
+        .chat-interface {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-toolbar {
+            background: var(--surface);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .toolbar-left, .toolbar-right {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+        }
+
+        .icon-btn:hover {
+            background: var(--surface-variant);
+        }
+
+        .model-info {
+            text-align: center;
+        }
+
+        .model-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .vision-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 4px;
+        }
+
+        .vision-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .vision-chip span {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .status-bar {
+            padding: 8px 16px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .message.ai {
+            flex-direction: row;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .avatar.ai {
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .avatar.user {
+            background: var(--surface-variant);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bubble {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .message.ai .bubble {
+            background: var(--surface);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .code-block {
+            background: #1e1e2e;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+        }
+
+        .code-block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 14px;
+            background: #313244;
+        }
+
+        .code-block-lang {
+            font-size: 12px;
+            font-weight: 600;
+            color: #cdd6f4;
+            letter-spacing: 0.5px;
+        }
+
+        .code-block-copy {
+            background: transparent;
+            border: 1px solid #585b70;
+            color: #a6adc8;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .code-block-copy:hover {
+            background: #45475a;
+            color: #cdd6f4;
+        }
+
+        .code-block-copy.copied {
+            background: #a6e3a1;
+            color: #1e1e2e;
+            border-color: #a6e3a1;
+        }
+
+        .code-block-body {
+            display: flex;
+            overflow-x: auto;
+            padding: 12px 0;
+        }
+
+        .code-block-body::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .code-block-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .code-block-body::-webkit-scrollbar-thumb {
+            background: #585b70;
+            border-radius: 2px;
+        }
+
+        .code-line-numbers {
+            padding: 0 10px 0 12px;
+            text-align: right;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .code-line-numbers span {
+            display: block;
+            font-size: 12px;
+            line-height: 1.7;
+            color: #585b70;
+        }
+
+        .code-line-content {
+            padding: 0 14px 0 0;
+            flex: 1;
+        }
+
+        .code-line-content pre {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .code-line-content pre span {
+            display: block;
+            white-space: pre;
+        }
+
+        .hl-keyword { color: #c678dd; }
+        .hl-string { color: #98c379; }
+        .hl-function { color: #61afef; }
+        .hl-number { color: #d19a66; }
+        .hl-comment { color: #5c6370; font-style: italic; }
+        .hl-plain { color: #abb2bf; }
+
+        .message.user .bubble {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .quick-commands {
+            display: flex;
+            gap: 8px;
+            padding: 8px 16px;
+            overflow-x: auto;
+        }
+
+        .quick-btn {
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .input-area {
+            background: var(--surface);
+            padding: 12px 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .input-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            background: var(--surface-variant);
+            border-radius: 20px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-icons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .input-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .input-wrapper input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            outline: none;
+            color: var(--text-primary);
+        }
+
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Model Manager */
+        .model-manager {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .model-header {
+            background: var(--surface);
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .model-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .model-list {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .model-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .model-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .model-card-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .model-card-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .model-tag {
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .model-tag.local {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .model-tag.vision {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--purple);
+        }
+
+        .model-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .model-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .model-btn {
+            flex: 1;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .model-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .model-btn.secondary {
+            background: var(--surface-variant);
+            color: var(--text-primary);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--surface-variant);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--purple));
+            border-radius: 2px;
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Terminal */
+        .terminal {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #1e1e2e;
+        }
+
+        .terminal-header {
+            background: #313244;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #f38ba8; }
+        .terminal-dot.yellow { background: #f9e2af; }
+        .terminal-dot.green { background: #a6e3a1; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 13px;
+            color: #cdd6f4;
+            font-weight: 500;
+        }
+
+        .terminal-content {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .terminal-line {
+            margin-bottom: 4px;
+        }
+
+        .terminal-prompt {
+            color: #a6e3a1;
+        }
+
+        .terminal-output {
+            color: #94a3b8;
+        }
+
+        .terminal-output.success {
+            color: #22c55e;
+        }
+
+        .terminal-output.warning {
+            color: #f59e0b;
+        }
+
+        .terminal-input {
+            background: #313244;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-input span {
+            color: #a6e3a1;
+        }
+
+        .terminal-input input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #cdd6f4;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+        }
+
+        /* Sidebar */
+        .sidebar-preview {
+            height: 100%;
+            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .user-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .user-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .credits-badge {
+            margin-top: 12px;
+            background: linear-gradient(135deg, var(--primary-light), #f3e8ff);
+            padding: 12px 16px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .credits-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .credits-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 12px 0;
+            overflow-y: auto;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            background: var(--background);
+        }
+
+        .menu-item.active {
+            background: var(--primary-light);
+            border-right: 3px solid var(--primary);
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .menu-icon.blue { background: var(--primary-light); color: var(--primary); }
+        .menu-icon.purple { background: #f3e8ff; color: var(--purple); }
+        .menu-icon.green { background: #dcfce7; color: var(--success); }
+        .menu-icon.orange { background: #fef3c7; color: var(--warning); }
+        .menu-icon.gray { background: var(--surface-variant); color: var(--text-secondary); }
+
+        .menu-text {
+            flex: 1;
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Settings */
+        .settings-preview {
+            height: 100%;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .settings-header {
+            background: var(--surface);
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .settings-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .settings-content {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .settings-group {
+            margin-bottom: 24px;
+        }
+
+        .settings-group-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+
+        .setting-item {
+            background: var(--surface);
+            padding: 16px;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .setting-info h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .setting-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .setting-toggle {
+            width: 48px;
+            height: 28px;
+            background: var(--border);
+            border-radius: 14px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .setting-toggle.active {
+            background: var(--primary);
+        }
+
+        .setting-toggle::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .setting-toggle.active::after {
+            left: 23px;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 48px;
+            margin-bottom: 60px;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 48px;
+            color: white;
+        }
+
+        .features-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .features-header p {
+            font-size: 16px;
+            opacity: 0.85;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* GGUF Section */
+        .gguf-section {
+            background: white;
+            border-radius: 32px;
+            padding: 48px;
+            margin-bottom: 40px;
+        }
+
+        .gguf-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .gguf-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .gguf-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .gguf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .gguf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .gguf-card {
+            background: var(--background);
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .gguf-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .gguf-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .gguf-card ul {
+            list-style: none;
+        }
+
+        .gguf-card li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gguf-card li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .quant-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .quant-tag {
+            padding: 6px 12px;
+            background: var(--surface);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            padding: 20px;
+        }
+
+        .footer p {
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .preview-section {
+                grid-template-columns: 1fr;
+            }
+
+            .features-section,
+            .gguf-section {
+                padding: 32px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 OmniAI</h1>
+            <p>纯Java · 本地AI · 离线推理 · 多模态</p>
+            <div class="feature-tags">
+                <span class="tag">LLaMA.cpp + JNI</span>
+                <span class="tag">GGUF支持</span>
+                <span class="tag">视觉推理</span>
+                <span class="tag">LoRA微调</span>
+                <span class="tag">向量知识库</span>
+                <span class="tag">内置终端</span>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <div class="preview-card">
+                <div class="preview-header">
+                    <h2>💬 聊天界面</h2>
+                    <p>简洁优雅的对话体验</p>
+                </div>
+                <div class="preview-content">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="chat-interface">
+                                <div class="chat-toolbar">
+                                    <div class="toolbar-left">
+                                        <button class="icon-btn">☰</button>
+                                    </div>
+                                    <div class="model-info">
+                                        <div class="model-name">Qwen2.5-0.5B</div>
+                                        <div class="vision-chip">
+                                            <div class="vision-dot"></div>
+                                            <span>本地视觉推理</span>
+                                        </div>
+                                    </div>
+                                    <div class="toolbar-right">
+                                        <button class="icon-btn">+</button>
+                                        <button class="icon-btn">⋮</button>
+                                    </div>
+                                </div>
+                                <div class="status-bar">
+                                    <div class="status-dot"></div>
+                                    <span>本地推理中 · GPU加速</span>
+                                </div>
+                                <div class="chat-messages">
+                                    <div class="message ai">
+                                        <div class="avatar ai">O</div>
+                                        <div class="bubble">
+                                            你好！我是 OmniAI，你的本地AI助手。有什么我可以帮助你的吗？
+                                        </div>
+                                    </div>
+                                    <div class="message user">
+                                        <div class="avatar user">👤</div>
+                                        <div class="bubble">
+                                            帮我写一个Python排序算法
+                                        </div>
+                                    </div>
+                                    <div class="message ai">
+                                        <div class="avatar ai">O</div>
+                                        <div class="bubble">
+                                            好的！这里是一个快速排序的实现：
+                                            <div class="code-block">
+                                                <div class="code-block-header">
+                                                    <span class="code-block-lang">Python</span>
+                                                    <button class="code-block-copy" onclick="copyCode(this)">复制</button>
+                                                </div>
+                                                <div class="code-block-body">
+                                                    <div class="code-line-numbers">
+                                                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                                                    </div>
+                                                    <div class="code-line-content">
+                                                        <pre><span><span class="hl-keyword">def</span> <span class="hl-function">quicksort</span><span class="hl-plain">(arr):</span></span><span><span class="hl-plain">    </span><span class="hl-keyword">if</span> <span class="hl-function">len</span><span class="hl-plain">(arr) &lt;=</span> <span class="hl-number">1</span><span class="hl-plain">:</span></span><span><span class="hl-plain">        </span><span class="hl-keyword">return</span> <span class="hl-plain">arr</span></span><span><span class="hl-plain">    pivot = arr[</span><span class="hl-function">len</span><span class="hl-plain">(arr)</span> <span class="hl-plain">//</span> <span class="hl-number">2</span><span class="hl-plain">]</span></span><span><span class="hl-plain">    left = [x </span><span class="hl-keyword">for</span> <span class="hl-plain">x </span><span class="hl-keyword">in</span> <span class="hl-plain">arr </span><span class="hl-keyword">if</span> <span class="hl-plain">x &lt; pivot]</span></span><span><span class="hl-plain">    middle = [x </span><span class="hl-keyword">for</span> <span class="hl-plain">x </span><span class="hl-keyword">in</span> <span class="hl-plain">arr </span><span class="hl-keyword">if</span> <span class="hl-plain">x == pivot]</span></span><span><span class="hl-plain">    right = [x </span><span class="hl-keyword">for</span> <span class="hl-plain">x </span><span class="hl-keyword">in</span> <span class="hl-plain">arr </span><span class="hl-keyword">if</span> <span class="hl-plain">x &gt; pivot]</span></span><span><span class="hl-plain">    </span><span class="hl-keyword">return</span> <span class="hl-function">quicksort</span><span class="hl-plain">(left) + middle +</span> <span class="hl-function">quicksort</span><span class="hl-plain">(right)</span></span></pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            时间复杂度为 O(n log n)，是高效的排序算法。
+                                        </div>
+                                    </div>
+                                    <div class="message user">
+                                        <div class="avatar user">👤</div>
+                                        <div class="bubble">
+                                            用Java实现单例模式
+                                        </div>
+                                    </div>
+                                    <div class="message ai">
+                                        <div class="avatar ai">O</div>
+                                        <div class="bubble">
+                                            以下是线程安全的双重检查锁定单例模式实现：
+                                            <div class="code-block">
+                                                <div class="code-block-header">
+                                                    <span class="code-block-lang">Java</span>
+                                                    <button class="code-block-copy" onclick="copyCode(this)">复制</button>
+                                                </div>
+                                                <div class="code-block-body">
+                                                    <div class="code-line-numbers">
+                                                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                                                    </div>
+                                                    <div class="code-line-content">
+                                                        <pre><span><span class="hl-keyword">public class</span> <span class="hl-function">Singleton</span> <span class="hl-plain">{</span></span><span><span class="hl-plain">    </span><span class="hl-keyword">private static volatile</span> <span class="hl-plain">Singleton instance;</span></span><span><span class="hl-plain">    </span><span class="hl-keyword">private</span> <span class="hl-function">Singleton</span><span class="hl-plain">() {}</span></span><span></span><span><span class="hl-plain">    </span><span class="hl-keyword">public static</span> <span class="hl-plain">Singleton</span> <span class="hl-function">getInstance</span><span class="hl-plain">() {</span></span><span><span class="hl-plain">        </span><span class="hl-keyword">if</span> <span class="hl-plain">(instance ==</span> <span class="hl-keyword">null</span><span class="hl-plain">) {</span></span><span><span class="hl-plain">            </span><span class="hl-keyword">synchronized</span> <span class="hl-plain">(Singleton.</span><span class="hl-keyword">class</span><span class="hl-plain">) {</span></span><span><span class="hl-plain">                </span><span class="hl-keyword">if</span> <span class="hl-plain">(instance ==</span> <span class="hl-keyword">null</span><span class="hl-plain">) {</span></span><span><span class="hl-plain">                    instance =</span> <span class="hl-keyword">new</span> <span class="hl-function">Singleton</span><span class="hl-plain">();</span></span><span><span class="hl-plain">                }</span></span><span><span class="hl-plain">            }</span></span><span><span class="hl-plain">        }</span></span><span><span class="hl-plain">        </span><span class="hl-keyword">return</span> <span class="hl-plain">instance;</span></span><span><span class="hl-plain">    }</span></span><span><span class="hl-plain">}</span></span></pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            使用 volatile 关键字防止指令重排序，双重检查锁定保证线程安全且高效。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quick-commands">
+                                    <button class="quick-btn">✍️ AI写作</button>
+                                    <button class="quick-btn">💻 代码生成</button>
+                                    <button class="quick-btn">🌐 翻译</button>
+                                    <button class="quick-btn">🔍 OCR识图</button>
+                                </div>
+                                <div class="input-area">
+                                    <div class="input-row">
+                                        <div class="input-wrapper">
+                                            <div class="input-icons">
+                                                <button class="input-icon">📎</button>
+                                                <button class="input-icon">📷</button>
+                                                <button class="input-icon">🔤</button>
+                                            </div>
+                                            <input type="text" placeholder="输入内容、图片或语音…">
+                                        </div>
+                                        <button class="send-btn">➤</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">
+                    <h2>📦 模型管理</h2>
+                    <p>GGUF模型下载、验证与管理</p>
+                </div>
+                <div class="preview-content">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="model-manager">
+                                <div class="model-header">
+                                    <h3>模型管理</h3>
+                                </div>
+                                <div class="model-list">
+                                    <div class="model-card">
+                                        <div class="model-card-header">
+                                            <div class="model-card-info">
+                                                <h4>Qwen2.5-0.5B-Instruct</h4>
+                                                <p>Q4_K_M · 0.4 GB · 预装</p>
+                                            </div>
+                                            <span class="model-tag local">本地</span>
+                                        </div>
+                                        <div class="model-stats">
+                                            <span class="stat-item">📄 文本模型</span>
+                                            <span class="stat-item">✅ 已就绪</span>
+                                            <span class="stat-item">🆓 Apache 2.0</span>
+                                        </div>
+                                        <div class="model-actions">
+                                            <button class="model-btn primary">使用中</button>
+                                            <button class="model-btn secondary">详情</button>
+                                        </div>
+                                    </div>
+                                    <div class="model-card">
+                                        <div class="model-card-header">
+                                            <div class="model-card-info">
+                                                <h4>Qwen3-VL-2B</h4>
+                                                <p>Q4_K_M · 1.5 GB · 预装</p>
+                                            </div>
+                                            <span class="model-tag vision">视觉</span>
+                                        </div>
+                                        <div class="model-stats">
+                                            <span class="stat-item">👁️ 图像理解</span>
+                                            <span class="stat-item">✅ 已就绪</span>
+                                            <span class="stat-item">🆓 Apache 2.0</span>
+                                        </div>
+                                        <div class="model-actions">
+                                            <button class="model-btn primary">使用</button>
+                                            <button class="model-btn secondary">详情</button>
+                                        </div>
+                                    </div>
+                                    <div class="model-card">
+                                        <div class="model-card-header">
+                                            <div class="model-card-info">
+                                                <h4>SmolVLM2-256M</h4>
+                                                <p>Q8_0 · 0.3 GB · 兜底</p>
+                                            </div>
+                                            <span class="model-tag vision">视觉</span>
+                                        </div>
+                                        <div class="model-stats">
+                                            <span class="stat-item">⚡ 极速兜底</span>
+                                            <span class="stat-item">📥 未下载</span>
+                                        </div>
+                                        <div class="model-actions">
+                                            <button class="model-btn primary">下载</button>
+                                            <button class="model-btn secondary">量化</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">
+                    <h2>📱 侧边栏</h2>
+                    <p>个人中心、积分系统、设置</p>
+                </div>
+                <div class="preview-content">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="sidebar-preview">
+                                <div class="sidebar-header">
+                                    <div class="sidebar-user">
+                                        <div class="user-avatar">U</div>
+                                        <div class="user-info">
+                                            <h4>用户</h4>
+                                            <p>user@omniai.local</p>
+                                        </div>
+                                    </div>
+                                    <div class="credits-badge">
+                                        <div>
+                                            <div class="credits-amount">1,280</div>
+                                            <div class="credits-label">可用积分</div>
+                                        </div>
+                                        <div style="background:var(--primary);color:white;padding:8px 12px;border-radius:10px;font-size:12px;font-weight:500;cursor:pointer;">
+                                            充值
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sidebar-menu">
+                                    <div class="menu-item active">
+                                        <div class="menu-icon blue">💬</div>
+                                        <div class="menu-text">聊天</div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-icon purple">🤖</div>
+                                        <div class="menu-text">Agent</div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-icon green">📚</div>
+                                        <div class="menu-text">知识库</div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-icon orange">🧠</div>
+                                        <div class="menu-text">模型管理</div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-icon purple">🔧</div>
+                                        <div class="menu-text">LoRA训练</div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-icon gray">💻</div>
+                                        <div class="menu-text">终端</div>
+                                    </div>
+                                </div>
+                                <div class="sidebar-footer">
+                                    <div class="menu-item">
+                                        <div class="menu-icon gray">⚙️</div>
+                                        <div class="menu-text">设置</div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-icon gray">👤</div>
+                                        <div class="menu-text">个人中心</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">
+                    <h2>⚙️ 设置</h2>
+                    <p>推理、视觉、安全等配置</p>
+                </div>
+                <div class="preview-content">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="settings-preview">
+                                <div class="settings-header">
+                                    <button class="icon-btn">←</button>
+                                    <h3>设置</h3>
+                                </div>
+                                <div class="settings-content">
+                                    <div class="settings-group">
+                                        <div class="settings-group-title">推理</div>
+                                        <div class="setting-item">
+                                            <div class="setting-info">
+                                                <h4>GPU加速</h4>
+                                                <p>使用GPU进行本地推理加速</p>
+                                            </div>
+                                            <div class="setting-toggle active"></div>
+                                        </div>
+                                        <div class="setting-item">
+                                            <div class="setting-info">
+                                                <h4>云端降级</h4>
+                                                <p>本地推理失败时自动切换云端</p>
+                                            </div>
+                                            <div class="setting-toggle active"></div>
+                                        </div>
+                                    </div>
+                                    <div class="settings-group">
+                                        <div class="settings-group-title">视觉</div>
+                                        <div class="setting-item">
+                                            <div class="setting-info">
+                                                <h4>视觉GPU加速</h4>
+                                                <p>启用视觉推理GPU加速</p>
+                                            </div>
+                                            <div class="setting-toggle active"></div>
+                                        </div>
+                                        <div class="setting-item">
+                                            <div class="setting-info">
+                                                <h4>图像自动OCR</h4>
+                                                <p>上传图片后自动识别文字</p>
+                                            </div>
+                                            <div class="setting-toggle"></div>
+                                        </div>
+                                    </div>
+                                    <div class="settings-group">
+                                        <div class="settings-group-title">安全</div>
+                                        <div class="setting-item">
+                                            <div class="setting-info">
+                                                <h4>数据加密</h4>
+                                                <p>AES-256-GCM加密存储</p>
+                                            </div>
+                                            <div class="setting-toggle active"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">
+                    <h2>💻 内置终端</h2>
+                    <p>llama.cpp命令行工具</p>
+                </div>
+                <div class="preview-content">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="terminal">
+                                <div class="terminal-header">
+                                    <div class="terminal-dots">
+                                        <div class="terminal-dot red"></div>
+                                        <div class="terminal-dot yellow"></div>
+                                        <div class="terminal-dot green"></div>
+                                    </div>
+                                    <div class="terminal-title">OmniAI Terminal</div>
+                                    <div style="width:30px;"></div>
+                                </div>
+                                <div class="terminal-content">
+                                    <div class="terminal-line">
+                                        <span class="terminal-prompt">llama&gt;</span>
+                                        <span class="terminal-output"> ./server --model Qwen2.5-7B.gguf</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="terminal-output">llama_model_loader: loaded meta data...</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="terminal-output success">llama_new_context_with_model: n_ctx = 4096</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="terminal-output">llama_new_context_with_model: kv self size = 512.00 MiB</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="terminal-output success">llama server listening at http://localhost:8080</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="terminal-output warning">GGUF v3 format detected</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="terminal-output">Model verified: SHA-256 OK</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="terminal-output">Ready to accept connections...</span>
+                                    </div>
+                                </div>
+                                <div class="terminal-input">
+                                    <span>llama&gt;</span>
+                                    <input type="text" placeholder="Enter command...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">
+                    <h2>✨ GGUF量化</h2>
+                    <p>17种量化类型完整支持</p>
+                </div>
+                <div class="preview-content">
+                    <div class="phone-mockup">
+                        <div class="phone-screen" style="background:var(--surface);padding:16px;display:flex;flex-direction:column;justify-content:center;">
+                            <div style="text-align:center;margin-bottom:24px;">
+                                <div style="width:80px;height:80px;margin:0 auto 16px;border-radius:24px;background:linear-gradient(135deg,var(--primary),var(--purple));display:flex;align-items:center;justify-content:center;font-size:40px;">
+                                    📦
+                                </div>
+                                <h3 style="font-size:18px;font-weight:600;color:var(--text-primary);margin-bottom:8px;">GGUF Quantization</h3>
+                                <p style="font-size:14px;color:var(--text-secondary);">选择量化类型，减小模型体积</p>
+                            </div>
+                            
+                            <div style="margin-bottom:16px;">
+                                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                                    <span style="font-size:14px;color:var(--text-secondary);">原始大小</span>
+                                    <span style="font-size:14px;font-weight:600;">13.5 GB</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;">
+                                    <span style="font-size:14px;color:var(--text-secondary);">预计大小</span>
+                                    <span style="font-size:14px;font-weight:600;color:var(--primary);">4.1 GB</span>
+                                </div>
+                            </div>
+
+                            <div style="background:var(--background);border-radius:16px;padding:12px;max-height:300px;overflow-y:auto;">
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                                    <div style="padding:12px;border-radius:12px;background:var(--primary-light);border:2px solid var(--primary);text-align:center;cursor:pointer;">
+                                        <div style="font-weight:600;color:var(--primary);font-size:14px;">Q4_K_M</div>
+                                        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">推荐</div>
+                                    </div>
+                                    <div style="padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);text-align:center;cursor:pointer;">
+                                        <div style="font-weight:500;color:var(--text-primary);font-size:14px;">Q4_K_S</div>
+                                        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">3.8 GB</div>
+                                    </div>
+                                    <div style="padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);text-align:center;cursor:pointer;">
+                                        <div style="font-weight:500;color:var(--text-primary);font-size:14px;">Q5_K_M</div>
+                                        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">4.7 GB</div>
+                                    </div>
+                                    <div style="padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);text-align:center;cursor:pointer;">
+                                        <div style="font-weight:500;color:var(--text-primary);font-size:14px;">Q6_K</div>
+                                        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">5.5 GB</div>
+                                    </div>
+                                    <div style="padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);text-align:center;cursor:pointer;">
+                                        <div style="font-weight:500;color:var(--text-primary);font-size:14px;">Q8_0</div>
+                                        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">7.1 GB</div>
+                                    </div>
+                                    <div style="padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);text-align:center;cursor:pointer;">
+                                        <div style="font-weight:500;color:var(--text-primary);font-size:14px;">F16</div>
+                                        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">13.5 GB</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button style="margin-top:16px;width:100%;padding:14px;border-radius:14px;border:none;background:var(--primary);color:white;font-size:15px;font-weight:600;cursor:pointer;">
+                                开始量化
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="features-header">
+                <h2>🚀 核心功能</h2>
+                <p>12大核心模块，构建完整的本地AI生态</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:var(--primary-light);">🧠</div>
+                    <h3>本地推理引擎</h3>
+                    <p>基于llama.cpp + JNI架构，纯Java实现，支持GGUF全系列量化模型，极速本地推理。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:#f3e8ff;">👁️</div>
+                    <h3>视觉多模态</h3>
+                    <p>集成Qwen3-VL、Qwen2.5-VL、SmolVLM2等视觉模型，支持图像理解与OCR识别。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:#dcfce7;">🔧</div>
+                    <h3>LoRA微调</h3>
+                    <p>支持文本和视觉模型的LoRA/QLoRA微调，自定义专属AI助手。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:#fef3c7;">📚</div>
+                    <h3>向量知识库</h3>
+                    <p>文档解析、Embedding生成、向量索引、余弦相似度检索，构建私域知识库。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:#fee2e2;">☁️</div>
+                    <h3>云端降级</h3>
+                    <p>本地推理失败时自动切换云端，无缝切换体验，保证可用性。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:#e0e7ff;">🔒</div>
+                    <h3>安全隐私</h3>
+                    <p>AES-256-GCM加密存储，Android Keystore密钥管理，数据完全本地化。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:#fce7f3;">💳</div>
+                    <h3>积分系统</h3>
+                    <p>积分充值、功能门控、邀请奖励、消耗明细，完整的商业化体系。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background:#d1fae5;">💻</div>
+                    <h3>内置终端</h3>
+                    <p>集成llama.cpp预编译程序，支持命令行交互、后台服务保活。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gguf-section">
+            <div class="gguf-header">
+                <div class="gguf-badge">
+                    <span>📦</span>
+                    <span>GGUF 完整支持</span>
+                </div>
+                <h2>GGUF模型生态</h2>
+                <p>完整的GGUF v3格式解析、验证、量化与管理</p>
+            </div>
+            <div class="gguf-grid">
+                <div class="gguf-card">
+                    <div class="gguf-card-icon">🔍</div>
+                    <h3>模型验证</h3>
+                    <ul>
+                        <li>GGUF魔数验证</li>
+                        <li>SHA-256哈希校验</li>
+                        <li>元数据完整性检查</li>
+                        <li>硬件兼容性检测</li>
+                    </ul>
+                </div>
+                <div class="gguf-card">
+                    <div class="gguf-card-icon">📖</div>
+                    <h3>元数据解析</h3>
+                    <ul>
+                        <li>GGUF v3格式解析</li>
+                        <li>模型架构识别</li>
+                        <li>上下文长度读取</li>
+                        <li>张量信息提取</li>
+                    </ul>
+                </div>
+                <div class="gguf-card">
+                    <div class="gguf-card-icon">⚡</div>
+                    <h3>量化支持</h3>
+                    <ul>
+                        <li>传统量化: Q4_0, Q5_0, Q8_0</li>
+                        <li>K-Quant: Q2_K ~ Q8_K</li>
+                        <li>IQ量化: IQ1_S ~ IQ4_S</li>
+                        <li>浮点: F16, F32</li>
+                    </ul>
+                    <div class="quant-types">
+                        <span class="quant-tag">Q2_K</span>
+                        <span class="quant-tag">Q3_K</span>
+                        <span class="quant-tag">Q4_K</span>
+                        <span class="quant-tag">Q5_K</span>
+                        <span class="quant-tag">Q6_K</span>
+                        <span class="quant-tag">Q8_K</span>
+                        <span class="quant-tag">IQ1_S</span>
+                        <span class="quant-tag">IQ2_S</span>
+                        <span class="quant-tag">IQ3_S</span>
+                        <span class="quant-tag">IQ4_S</span>
+                    </div>
+                </div>
+                <div class="gguf-card">
+                    <div class="gguf-card-icon">📥</div>
+                    <h3>模型管理</h3>
+                    <ul>
+                        <li>断点续传下载</li>
+                        <li>进度实时监控</li>
+                        <li>批量导入导出</li>
+                        <li>模型分类管理</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 OmniAI. 本地AI，安全无忧。</p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(btn) {
+            var codeBlock = btn.closest('.code-block');
+            var pre = codeBlock.querySelector('pre');
+            var text = pre.textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.setting-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        // 模拟打字效果
+        const bubbles = document.querySelectorAll('.bubble');
+        bubbles.forEach((bubble, index) => {
+            bubble.style.opacity = '0';
+            bubble.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                bubble.style.transition = 'all 0.4s ease';
+                bubble.style.opacity = '1';
+                bubble.style.transform = 'translateY(0)';
+            }, 300 + index * 400);
+        });
+    </script>
+</body>
+</html>

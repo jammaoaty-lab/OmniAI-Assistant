@@ -1,0 +1,78 @@
+#!/system/bin/sh
+# Simulated llama.cpp main
+echo "========================================="
+echo "Senta AI llama.cpp (Simulated) v1.0"
+echo "========================================="
+
+MODEL=""
+PROMPT="Hello!"
+N_PREDICT=512
+TEMP=0.7
+VERBOSE=0
+
+# Parse arguments
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -m|--model)
+      MODEL="$2"
+      shift 2
+      ;;
+    -p|--prompt)
+      PROMPT="$2"
+      shift 2
+      ;;
+    -n|--n-predict)
+      N_PREDICT="$2"
+      shift 2
+      ;;
+    --temp)
+      TEMP="$2"
+      shift 2
+      ;;
+    -v|--verbose)
+      VERBOSE=1
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+echo ""
+if [ -n "$MODEL" ]; then
+  echo "[Model] Loading $MODEL..."
+  sleep 1
+  echo "[Model] Loaded successfully!"
+  echo ""
+fi
+
+echo "[Prompt] $PROMPT"
+echo ""
+echo "[Output]"
+
+# Generate simulated response
+if echo "$PROMPT" | grep -qi "hello\|hi\|你好"; then
+  echo "Hello! I'm Senta AI, a simulated response from llama.cpp."
+  echo "This demonstrates the terminal interface is working!"
+elif echo "$PROMPT" | grep -qi "code\|编程"; then
+  echo "Here's a simulated code generation response:"
+  echo ""
+  echo "```kotlin"
+  echo "fun main() {"
+  echo "    println(\"Hello from Senta AI Terminal!\")"
+  echo "}"
+  echo "```"
+elif echo "$PROMPT" | grep -qi "story\|故事"; then
+  echo "Once upon a time, in the land of Android..."
+  echo "There was an AI assistant named Senta AI..."
+  echo "It could run completely locally on your phone..."
+else
+  echo "Thank you for using Senta AI Terminal!"
+  echo "This is a simulated llama.cpp response."
+  echo "To use the real llama.cpp, place the precompiled"
+  echo "arm64-v8a binaries in assets/llama-bin directory."
+fi
+
+echo ""
+echo "[Done] Generation completed (simulated)"

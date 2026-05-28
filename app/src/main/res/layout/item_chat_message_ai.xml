@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="start"
+    android:padding="@dimen/spacing_sm">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_bubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/chat_bubble_ai"
+            app:cardCornerRadius="@dimen/bubble_radius"
+            app:cardElevation="1dp"
+            app:cardPreventCornerOverlap="false"
+            app:strokeColor="@color/border"
+            app:strokeWidth="@dimen/card_stroke">
+
+            <TextView
+                android:id="@+id/tv_message_content"
+                style="@style/Senta.TextView.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/spacing_xs"
+                android:maxWidth="@dimen/spacing_xxxl"
+                android:paddingStart="@dimen/spacing_lg"
+                android:paddingTop="@dimen/spacing_lg"
+                android:paddingEnd="@dimen/spacing_lg"
+                android:paddingBottom="@dimen/spacing_lg"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body"
+                tools:text="好的，我来帮你写这段代码。这是一个示例实现…" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/layout_code_blocks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/image_attachment"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_message_time"
+            style="@style/Senta.TextView.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginStart="@dimen/spacing_sm"
+            tools:text="14:30" />
+
+    </LinearLayout>
+
+</LinearLayout>
