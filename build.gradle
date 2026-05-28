@@ -10,15 +10,6 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
-        maven { url 'https://repo.huaweicloud.com/repository/google/' }
-        google()
-        mavenCentral()
-    }
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
