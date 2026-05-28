@@ -5,7 +5,6 @@ plugins {
 android {
     namespace 'com.omniai.assistant'
     compileSdk 34
-    ndkVersion '23.1.7779620'
 
     signingConfigs {
         release {
